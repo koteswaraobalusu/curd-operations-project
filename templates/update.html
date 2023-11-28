@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="#">
+    {% include 'cdnlines.html' %}
+    <title>Create Account</title>
+  </head>
+  <style media="screen">
+    .form-control{
+      margin-top:-5px;
+    }
+    img{
+      border:2px solid black;
+      box-shadow:2px 2px 2px black;
+    }
+    form{
+      box-shadow:2px 2px 2px 2px red;
+      background-color: skyblue;
+      padding:20px;
+      border-radius:10px;
+      margin-top:10px;
+    }
+  </style>
+  <body style="background-color:lightgreen;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="{% static 'school1.jpg' %}" alt="school image" width=450 height=380>
+          <img src="{% static 'dhoni.jpg' %}" alt="dhoni image" width=450 height=380>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-center mt-2"> Welcome To Curd Operations</h3>
+          <form class="" action="{% url 'update_data' data.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="text-center">Update Account</h1>
+
+            <label for="">Photo</label>
+            {% if data.image %}
+            <img src="{{ data.image.url}}" alt="" height=50 width=50 class="float-right mb-2">
+            <input type="file" name="photo" value="{{ data.image.url }}" class="form-control" placeholder="Photo">
+            {% else %}
+            <img src="" alt="image" height=50 width=50 class="float-right mb-2">
+            <input type="file" name="photo" value="" class="form-control" placeholder="Photo">
+            {% endif %}
+
+
+
+
+            <label for="">First Name</label>
+            <input type="text" name="fname" value="{{ data.fname }}" class="form-control" placeholder="First Name">
+
+            <label for="">Last Name</label>
+            <input type="text" name="lname" value="{{ data.lname }}" class="form-control" placeholder="Last Name">
+
+            <label for="">Email Id</label>
+            <input type="email" name="email" value="{{ data.emailid }}" class="form-control" placeholder="Email Id">
+
+            <label for="">Phone Number</label>
+            <input type="tel" name="phone" value="{{ data.phone }}" class="form-control" placeholder="Phone Number">
+
+            <label for="">Qualification</label>
+            <input type="text" name="qual" value="{{ data.qualification }}" class="form-control" placeholder="Qualification">
+
+
+            <label for="">Location</label>
+            <input type="text" name="loc" value="{{ data.location }}" class="form-control" placeholder="Location">
+
+            <label for="">About</label><br>
+            <input type="text" name="about" value="{{ data.description }}" class="form-control" placeholder="about">
+            <div class="text-center">
+              <button type="submit" name="button" class="btn btn-primary mt-2">Update</button>
+              <button type="reset" name="button" class="btn btn-danger mt-2">Clear</button><br>
+
+            </div>
+            <div class="text-center">
+              <a href="{% url 'mainpage' %}" class="btn btn-outline-success mt-2">Go to mainpage</a>
+
+            </div>
+
+
+
+          </form>
+
+
+        </div>
+        <div class="col-md-4">
+          <img src="{% static 'school2.jpg' %}" alt="school image" width=450 height=380>
+          <img src="{% static 'god.jpg'%}" alt="lord shiva" width=450 height=380>
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
